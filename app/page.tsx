@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './style.css';
 
 export default function Home() {
@@ -9,6 +9,8 @@ export default function Home() {
   const [result, setResult] = useState<{ epss: string; percentile: string } | null>(null);
   const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+
+  const rateLimitTimestamps = useRef<number[]>([]);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
@@ -24,17 +26,41 @@ export default function Home() {
       return;
     }
 
+    const now = Date.now();
+    const last2s = rateLimitTimestamps.current.filter(ts => now - ts < 2000);
+    const last1hr = rateLimitTimestamps.current.filter(ts => now - ts < 60 * 60 * 1000);
+
+    if (last2s.length > 0 || last1hr.length >= 100) {
+      setError('Too many requests. Please wait before sending more.');
+      return;
+    }
+
+    rateLimitTimestamps.current.push(now);
+
     setLoading(true);
     try {
-      const res = await fetch(`/api/query?cve=${encodeURIComponent(cveId)}`);
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 5000);
+
+      const safeCve = encodeURIComponent(cveId);
+      const res = await fetch(`https://api.first.org/data/v1/epss?cve=${safeCve}`, {
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeout);
       const data = await res.json();
-      if (res.ok) {
-        setResult(data);
+
+      if (!res.ok || !data.data || data.data.length === 0) {
+        setError('No data found for the specified CVE.');
       } else {
-        setError(data.error || 'API Error');
+        setResult(data.data[0]);
       }
-    } catch (err) {
-      setError('Request failed.');
+    } catch (err: any) {
+      if (err.name === 'AbortError') {
+        setError('External API request timed out.');
+      } else {
+        setError('An unexpected error occurred.');
+      }
     } finally {
       setLoading(false);
     }
