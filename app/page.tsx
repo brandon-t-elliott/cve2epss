@@ -6,7 +6,7 @@ import './style.css';
 export default function Home() {
   const [cveId, setCveId] = useState('');
   const [error, setError] = useState('');
-  const [result, setResult] = useState<{ epss: string; percentile: string } | null>(null);
+  const [result, setResult] = useState<{ epss: string; percentile: string; date: string } | null>(null);
   const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
 
@@ -52,12 +52,23 @@ export default function Home() {
 
       if (!res.ok || !data.data || data.data.length === 0) {
         setError('No data found for the specified CVE.');
-      } else {
-        setResult(data.data[0]);
+        return;
       }
+
+      const { epss, percentile, date } = data.data[0];
+
+      const floatPattern = /^0\.\d+$/;
+      const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+
+      if (!floatPattern.test(epss) || !floatPattern.test(percentile) || !datePattern.test(date)) {
+        setError('Invalid data received from the EPSS API.');
+        return;
+      }
+
+      setResult({ epss, percentile, date });
     } catch (err: any) {
       if (err.name === 'AbortError') {
-        setError('External API request timed out.');
+        setError('EPSS API request timed out.');
       } else {
         setError('An unexpected error occurred.');
       }
@@ -116,12 +127,17 @@ export default function Home() {
                   EPSS (Exploit Prediction Scoring System) estimates the likelihood that a vulnerability will be exploited in the wild in the next 30 days.
                 </p>
               </div>
-              <div>
+              <div className="mb-4">
                 <p className="metric">
                   Percentile: <span>{formatPercent(result.percentile)}</span>
                 </p>
                 <p className="description">
                   How this CVE compares to others (percentage of vulnerabilities that are scored less than or equal to it).
+                </p>
+              </div>
+              <div>
+                <p className="description" style={{ textAlign: 'center', color: 'var(--highlight)' }}>
+                  as of {result.date}
                 </p>
               </div>
             </div>
