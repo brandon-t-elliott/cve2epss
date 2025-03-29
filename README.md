@@ -4,7 +4,7 @@ A simple one-page web app that allows users to enter a CVE ID (e.g. `CVE-1999-00
 
 I really just wanted a quick way to see the EPSS data for a single CVE ID.
 
-It's not meant to be an all-encompassing app.
+It's not meant to be an all-encompassing app (and never will be).
 
 ## Try it Out
 
