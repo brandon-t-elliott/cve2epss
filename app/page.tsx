@@ -111,7 +111,7 @@ export default function Home() {
             rel="noopener noreferrer"
             style={{ color: 'var(--highlight)', textDecoration: 'underline' }}
           >
-            Contact the creator
+            Contact
           </a>
         </p>
         <p style={{ marginTop: '0.5rem' }}>
