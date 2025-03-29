@@ -18,7 +18,7 @@ export default function Home() {
     setError('');
     setResult(null);
 
-    const regex = /^CVE-\d{4}-\d{4,}$/;
+    const regex = /^CVE-\d{4}-\d{4,10}$/;
     if (!regex.test(cveId)) {
       setError('Invalid CVE format. Example: CVE-1999-0001');
       return;

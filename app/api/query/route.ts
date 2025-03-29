@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const cve = searchParams.get('cve') || '';
 
-  const regex = /^CVE-\d{4}-\d{4,}$/;
+  const regex = /^CVE-\d{4}-\d{4,10}$/;
   if (!regex.test(cve)) {
     return NextResponse.json({ error: 'Invalid CVE format.' }, {
       status: 400,
