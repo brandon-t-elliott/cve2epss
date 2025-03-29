@@ -1,0 +1,150 @@
+:root {
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --text: #111111;
+  --input: #ffffff;
+  --muted: #6b7280;
+  --highlight: #2563eb;
+  --button-blue: #2563eb;
+  --results: #f9fafb;
+}
+
+html.dark {
+  --bg: #0e1726;
+  --card: #1a2332;
+  --text: #e3eaf4;
+  --input: #2b3a4b;
+  --muted: #a9b4c4;
+  --highlight: #60a5fa;
+  --button-blue: #2563eb;
+  --results: #1e2a3d;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.mode-toggle-wrapper {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+}
+
+.card {
+  background-color: var(--card);
+  color: var(--text);
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+.toggle-button {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--muted);
+  background-color: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input[type='text'] {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  background-color: var(--input);
+  color: var(--text);
+}
+
+button.submit-button {
+  background-color: var(--button-blue);
+  color: white;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.error {
+  color: #dc2626;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.results {
+  margin-top: 2rem;
+  background-color: var(--results);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid #39475d;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.results h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.results .metric {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.results .metric span {
+  color: var(--highlight);
+}
+
+.results .description {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 0.25rem;
+}
