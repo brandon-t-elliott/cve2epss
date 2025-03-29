@@ -169,6 +169,16 @@ export default function Home() {
           and makes no warranties regarding the availability, accuracy, or completeness of the information provided.
           <br />
           Use at your own risk.
+          EPSS data is provided by{' '}
+          <a
+            href="https://www.first.org/epss/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'var(--highlight)', textDecoration: 'underline' }}
+          >
+            first.org
+          </a>{' '}
+          - This site is not affiliated with FIRST or first.org.
         </p>
       </footer>
     </main>
