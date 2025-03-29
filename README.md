@@ -21,6 +21,13 @@ npm run dev
  
 Then open [http://localhost:3000](http://localhost:3000)
 
+## Disclaimer
+
+This project utilizes the [EPSS API](https://www.first.org/epss/api) and makes no warranties regarding the availability, accuracy, or completeness of the information provided.
+Use at your own risk.
+
+EPSS data is provided by [first.org](https://www.first.org/epss/) - This project is not affiliated with FIRST or first.org.
+
 ## License
 
 MIT — free to use and modify.
