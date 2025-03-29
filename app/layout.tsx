@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: 'CVE to EPSS',
-  description: 'Lookup EPSS scores for CVEs',
+  title: 'CVE to EPSS | Lookup EPSS data for a CVE ID',
+  description: 'A simple web app which enables you to quickly and easily lookup EPSS scores for a CVE ID.',
 };
 
 export default function RootLayout({
