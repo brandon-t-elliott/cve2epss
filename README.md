@@ -28,6 +28,10 @@ Use at your own risk.
 
 EPSS data is provided by [first.org](https://www.first.org/epss/) - This project is not affiliated with FIRST or first.org.
 
+## Contact
+
+Contact me on [LinkedIn](https://www.linkedin.com/in/brandon-t-elliott/)
+
 ## License
 
 MIT — free to use and modify.
