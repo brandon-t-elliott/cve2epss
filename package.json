@@ -10,14 +10,14 @@
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
-    "next": "15.2.6",
-    "react": "^19.0.1",
-    "react-dom": "^19.0.1"
+    "next": "15.2.8",
+    "react": "^19.0.3",
+    "react-dom": "^19.0.3"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^19.0.1",
-    "@types/react-dom": "^19.0.1",
+    "@types/react": "^19.0.3",
+    "@types/react-dom": "^19.0.3",
     "typescript": "^5"
   }
 }
